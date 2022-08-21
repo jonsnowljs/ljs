@@ -19,7 +19,7 @@
     // we want to avoid extraneous spaces
     "no-multi-spaces": ["error"],
     // we want comma dangle
-    "comma-dangle": ["error", "always-multiline"]
+    "comma-dangle": "off"
   },
   "settings": {
     "react": {

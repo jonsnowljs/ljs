@@ -1,22 +1,17 @@
 import React from 'react'
-import Button, { ButtonSize, ButtonType } from './components/Button/button'
+import Button from './components/Button/button'
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Button
-          className="customer"
-          btnType={ButtonType.Primary}
-          size={ButtonSize.Large}
-          autoFocus
-        >
+        <Button className="customer" btnType={'primary'} size={'lg'} autoFocus>
           Hello
         </Button>
         <Button disabled>Hello</Button>
         <Button
-          btnType={ButtonType.Link}
-          size={ButtonSize.Small}
+          btnType={'link'}
+          size={'sm'}
           href="https://www.google.com"
           onClick={(e) => {
             e.preventDefault()
@@ -26,14 +21,14 @@ const App: React.FC = () => {
           Google
         </Button>
         <Button
-          btnType={ButtonType.Link}
-          size={ButtonSize.Small}
+          btnType={'link'}
+          size={'sm'}
           href="https://www.google.com"
           disabled={true}
         >
           Google
         </Button>
-        <Button size={ButtonSize.Large} btnType={ButtonType.Danger}>
+        <Button size={'lg'} btnType={'danger'}>
           Google
         </Button>
         <h1>hello world</h1>
