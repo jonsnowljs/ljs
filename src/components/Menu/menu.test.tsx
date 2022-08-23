@@ -10,13 +10,13 @@ import Menu, { MenuProps } from './menu'
 import MenuItem from './menuItem'
 
 const testProps: MenuProps = {
-  defaultIndex: 0,
+  defaultIndex: '0',
   onSelect: jest.fn(),
   className: 'test',
 }
 
 const testVerProps: MenuProps = {
-  defaultIndex: 0,
+  defaultIndex: '0',
   mode: 'vertical',
 }
 
@@ -43,7 +43,7 @@ describe('Test menu and menuItem component', () => {
   })
   it('Should render correct menu and menuitem based on default props', () => {
     expect(menuElement).toBeInTheDocument()
-    expect(menuElement).toHaveClass('ljs-menu test')
+    expect(menuElement).toHaveClass('viking-menu test')
     expect(menuElement.getElementsByTagName('li').length).toEqual(3)
     expect(activeElement).toHaveClass('menu-item is-active')
     expect(disabledElement).toHaveClass('menu-item is-disabled')

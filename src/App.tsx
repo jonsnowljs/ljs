@@ -2,25 +2,34 @@ import React from 'react'
 import Button from './components/Button/button'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
+import SubMenu from './components/Menu/subMenu'
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
         <Menu
-          defaultIndex={0}
+          defaultIndex={'2'}
           onSelect={(index) => {
             alert(index)
           }}
         >
           <MenuItem>Item1</MenuItem>
           <MenuItem>Item2</MenuItem>
-          <MenuItem>Item3</MenuItem>
+          <SubMenu title="dropdown">
+            <MenuItem>Drop1</MenuItem>
+            <MenuItem>Drop2</MenuItem>
+            <MenuItem>Drop3</MenuItem>
+          </SubMenu>
         </Menu>
-        <Menu defaultIndex={1} mode="vertical">
+        <Menu defaultIndex={'1'} mode="vertical">
           <MenuItem>Item1</MenuItem>
           <MenuItem>Item2</MenuItem>
-          <MenuItem>Item3</MenuItem>
+          <SubMenu title="dropdown2">
+            <MenuItem>Drop1</MenuItem>
+            <MenuItem>Drop2</MenuItem>
+            <MenuItem>Drop3</MenuItem>
+          </SubMenu>
         </Menu>
         <Button className="customer" btnType={'primary'} size={'lg'} autoFocus>
           Hello
