@@ -8,6 +8,7 @@ import {
 import React from 'react'
 import Menu, { MenuProps } from './menu'
 import MenuItem from './menuItem'
+import SubMenu from './subMenu'
 
 const testProps: MenuProps = {
   defaultIndex: '0',
@@ -26,8 +27,27 @@ const generateMenu = (props: MenuProps) => {
       <MenuItem>active</MenuItem>
       <MenuItem disabled>disabled</MenuItem>
       <MenuItem>xyz</MenuItem>
+      <SubMenu title="dropdown">
+        <MenuItem>Drop1</MenuItem>
+        <MenuItem>Drop2</MenuItem>
+        <MenuItem>Drop3</MenuItem>
+      </SubMenu>
     </Menu>
   )
+}
+const createStyleFile = () => {
+  const cssFile: string = `
+    .viking-submenu {
+      display: none;
+    }
+    .viking-submenu.menu-opened{
+      display: block;
+    }
+  `
+  const style = document.createElement('style')
+  style.type = 'text/css'
+  style.innerHTML = cssFile
+  return style
 }
 
 let wrapper: RenderResult,
@@ -37,6 +57,7 @@ let wrapper: RenderResult,
 describe('Test menu and menuItem component', () => {
   beforeEach(() => {
     wrapper = render(generateMenu(testProps))
+    wrapper.container.append(createStyleFile())
     menuElement = wrapper.getByTestId('test-menu')
     activeElement = wrapper.getByText('active')
     disabledElement = wrapper.getByText('disabled')
@@ -44,7 +65,8 @@ describe('Test menu and menuItem component', () => {
   it('Should render correct menu and menuitem based on default props', () => {
     expect(menuElement).toBeInTheDocument()
     expect(menuElement).toHaveClass('viking-menu test')
-    expect(menuElement.getElementsByTagName('li').length).toEqual(3)
+    // expect(menuElement.getElementsByTagName('li').length).toEqual(3)
+    expect(menuElement.querySelectorAll(':scope > li').length).toEqual(4)
     expect(activeElement).toHaveClass('menu-item is-active')
     expect(disabledElement).toHaveClass('menu-item is-disabled')
   })
@@ -62,5 +84,19 @@ describe('Test menu and menuItem component', () => {
     const wrapper = render(generateMenu(testVerProps))
     const menuElement = wrapper.getByTestId('test-menu')
     expect(menuElement).toHaveClass('menu-vertical')
+  })
+  it('Should show dropdown items when hover on subMenu', async () => {
+    expect(wrapper.queryByText('Drop1')).not.toBeVisible()
+    const dropdownElement = wrapper.getByText('dropdown')
+    fireEvent.mouseEnter(dropdownElement)
+    await waitFor(() => {
+      expect(wrapper.queryByText('Drop1')).toBeVisible()
+    })
+    fireEvent.click(wrapper.getByText('Drop1'))
+    expect(testProps.onSelect).toHaveBeenCalledWith('3-0')
+    fireEvent.mouseLeave(dropdownElement)
+    await waitFor(() => {
+      expect(wrapper.queryByText('Drop1')).not.toBeVisible()
+    })
   })
 })
