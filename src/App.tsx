@@ -1,13 +1,17 @@
 import React from 'react'
 import Button from './components/Button/button'
+import Icon from './components/Icon/icon'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
+        {/* <FontAwesomeIcon icon="ArrowDo" size="10x" /> */}
+        <Icon icon={solid('arrow-down')} size="4x" theme="info" shake />
         <Menu
           defaultIndex={'2'}
           onSelect={(index) => {
