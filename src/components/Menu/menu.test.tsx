@@ -1,9 +1,15 @@
 import React from 'react'
-import { render, RenderResult, fireEvent, waitFor} from '@testing-library/react'
-import Menu, {MenuProps} from './menu'
+import {
+  render,
+  RenderResult,
+  fireEvent,
+  waitFor,
+} from '@testing-library/react'
+import Menu, { MenuProps } from './menu'
 import MenuItem from './menuItem'
 import SubMenu from './subMenu'
 jest.mock('../Icon/icon', () => {
+  // eslint-disable-next-line react/display-name
   return () => {
     return <i className="fa" />
   }
@@ -12,40 +18,30 @@ jest.mock('react-transition-group', () => {
   return {
     CSSTransition: (props: any) => {
       return props.children
-    }
+    },
   }
 })
 const testProps: MenuProps = {
   defaultIndex: '0',
   onSelect: jest.fn(),
-  className: 'test'
+  className: 'test',
 }
 const testVerProps: MenuProps = {
   defaultIndex: '0',
   mode: 'vertical',
-  defaultOpenSubMenus: ['4']
+  defaultOpenSubMenus: ['4'],
 }
 const generateMenu = (props: MenuProps) => {
   return (
     <Menu {...props}>
-      <MenuItem>
-        active
-      </MenuItem>
-      <MenuItem disabled>
-        disabled
-      </MenuItem>
-      <MenuItem>
-        xyz
-      </MenuItem>
+      <MenuItem>active</MenuItem>
+      <MenuItem disabled>disabled</MenuItem>
+      <MenuItem>xyz</MenuItem>
       <SubMenu title="dropdown">
-        <MenuItem>
-          drop1
-        </MenuItem>
+        <MenuItem>drop1</MenuItem>
       </SubMenu>
       <SubMenu title="opened">
-        <MenuItem>
-          opened1
-        </MenuItem>
+        <MenuItem>opened1</MenuItem>
       </SubMenu>
     </Menu>
   )
@@ -64,12 +60,16 @@ const createStyleFile = () => {
   style.innerHTML = cssFile
   return style
 }
-let wrapper: RenderResult, wrapper2: RenderResult, menuElement: HTMLElement, activeElement: HTMLElement, disabledElement: HTMLElement
+let wrapper: RenderResult,
+  wrapper2: RenderResult,
+  menuElement: HTMLElement,
+  activeElement: HTMLElement,
+  disabledElement: HTMLElement
 describe('test Menu and MenuItem component in default(horizontal) mode', () => {
   beforeEach(() => {
     wrapper = render(generateMenu(testProps))
     wrapper.container.append(createStyleFile())
-    menuElement= wrapper.getByTestId('test-menu')
+    menuElement = wrapper.getByTestId('test-menu')
     activeElement = wrapper.getByText('active')
     disabledElement = wrapper.getByText('disabled')
   })
