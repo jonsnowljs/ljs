@@ -1,10 +1,10 @@
 import React from 'react'
-import Button from './components/Button/button'
 import Icon from './components/Icon/icon'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { Button } from './components/Button/button'
 
 const App: React.FC = () => {
   return (
@@ -50,12 +50,7 @@ const App: React.FC = () => {
         >
           Google
         </Button>
-        <Button
-          btnType={'link'}
-          size={'sm'}
-          href="https://www.google.com"
-          disabled={true}
-        >
+        <Button btnType={'link'} size={'sm'} href="https://www.google.com" disabled={true}>
           Google
         </Button>
         <Button size={'lg'} btnType={'danger'}>
@@ -68,12 +63,7 @@ const App: React.FC = () => {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
           Learn React
         </a>
       </header>

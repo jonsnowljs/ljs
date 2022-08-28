@@ -9,10 +9,11 @@ interface BaseButtonProps {
   /** If the button is available to click */
   disabled?: boolean
   /** size of the button */
-  size?: ButtonSize
+  size?: 'lg' | 'sm'
   /** Type of the button */
   btnType?: ButtonType
   children?: React.ReactNode
+  /** Available when the button type is link */
   href?: string
 }
 
@@ -20,14 +21,21 @@ type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElemen
 type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
-/** Customized Button */
-const Button: React.FC<ButtonProps> = (props) => {
+/**
+ * Customized Button element for user interaction
+ * ### How to import
+ *
+ * ```js
+ * import {Button} from
+ * ```
+ */
+export const Button: React.FC<ButtonProps> = (props) => {
   const { btnType, className, disabled, size, children, href, ...restProps } = props
 
   const classes = classNames('btn', className, {
     [`btn-${btnType ?? 'default'}`]: btnType,
     [`btn-${size ?? 'sm'}`]: size,
-    disabled: btnType === 'link' && disabled
+    disabled: btnType === 'link' && disabled,
   })
 
   if (btnType === 'link') {
@@ -48,7 +56,5 @@ const Button: React.FC<ButtonProps> = (props) => {
 Button.defaultProps = {
   btnType: 'default',
   size: 'sm',
-  disabled: false
+  disabled: false,
 }
-
-export default Button
