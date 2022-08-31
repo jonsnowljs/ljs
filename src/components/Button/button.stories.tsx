@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import React from 'react'
 
-import { ComponentMeta, ComponentStory, Meta } from '@storybook/react'
+import { ComponentStory, Meta } from '@storybook/react'
 import { Button } from './button'
 
 const meta: Meta = {

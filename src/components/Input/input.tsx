@@ -19,6 +19,9 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
   append?: string | ReactElement
 }
 
+/**
+ * Input component
+ */
 export const Input: FC<InputProps> = (props) => {
   const { disabled, size, icon, prepend, append, style, ...restProps } = props
   const cnames = classNames('viking-input-wrapper', {

@@ -5,11 +5,16 @@ import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { Button } from './components/Button/button'
+import { Input } from './components/Input/input'
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
+        <Input style={{ width: '300px' }} append={'.com'} />
+        <Input style={{ width: '300px' }} prepend={'http://'} />
+        <Input style={{ width: '300px' }} icon={solid('align-center')} />
+
         {/* <FontAwesomeIcon icon="ArrowDo" size="10x" /> */}
         <Icon icon={solid('arrow-down')} size="4x" theme="info" shake />
         <Menu
