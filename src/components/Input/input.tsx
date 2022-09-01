@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-base-to-string */
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import classNames from 'classnames'
-import React, { FC, InputHTMLAttributes, ReactElement } from 'react'
+import React, { ChangeEvent, FC, InputHTMLAttributes, ReactElement } from 'react'
 import Icon from '../Icon/icon'
 
 type InputSize = 'lg' | 'sm'
@@ -17,6 +17,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
   prepend?: string | ReactElement
   /** Append to the end of the input */
   append?: string | ReactElement
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 /**

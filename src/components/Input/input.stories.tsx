@@ -2,6 +2,7 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { ComponentStory, Meta } from '@storybook/react'
 import { Input } from './input'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const ControlledInput = () => {
   const [value, setValue] = useState('')
@@ -9,7 +10,7 @@ const ControlledInput = () => {
     <Input
       value={value}
       defaultValue={value}
-      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+      onChange={(e) => {
         setValue(e.target.value)
       }}
     />
@@ -36,18 +37,20 @@ export const PrependInput = Template.bind({})
 export const AppendInput = Template.bind({})
 
 Default.args = {
-  children: <ControlledInput />,
+  // children: <ControlledInput />,
   placeholder: 'Default Input',
 }
 Disabled.args = {
   disabled: true,
-  children: 'primary',
+  placeholder: 'primary',
 }
 Icon.args = {
-  children: 'Danger',
+  placeholder: 'Danger',
+  icon: solid('search'),
 }
 Size.args = {
-  children: 'Link',
+  placeholder: 'Link',
+  size: 'lg'
 }
 PrependInput.args = {
   defaultValue: 'prepend text',
