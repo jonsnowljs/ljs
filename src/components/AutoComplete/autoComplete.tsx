@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Input, InputProps } from './input'
+import { Input, InputProps } from '../Input/input'
 
 export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
   fetchSuggestions: (str: string) => string[]
