@@ -6,11 +6,21 @@ import SubMenu from './components/Menu/subMenu'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { Button } from './components/Button/button'
 import { Input } from './components/Input/input'
+import { AutoComplete } from './components/AutoComplete/autoComplete'
+
+const lakers = ['bradley', 'pope', 'caruso', 'cook', 'cousins',
+  'james', 'AD', 'green', 'howard', 'kuzma', 'McGee', 'rando']
+
+const handleFetch = (query: string) => {
+  return lakers.filter(name => name.includes(query))
+}
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
+        <AutoComplete fetchSuggestions={handleFetch} />
+        {/* <AutoComplete fetchSuggestions={['dsf', 'dsfhfsdklj']}/> */}
         <Input style={{ width: '300px' }} append={'.com'} />
         <Input style={{ width: '300px' }} prepend={'http://'} />
         <Input style={{ width: '300px' }} icon={solid('align-center')} />
